@@ -37,7 +37,9 @@
             :message="message"
             :current-copy="currentCopy"
             :copied-message-id="copiedMessageId"
+            :show-starters="message.type === 'welcome'"
             @copy="copyMessage"
+            @select-question="sendStarterQuestion"
           />
         </div>
 
@@ -367,6 +369,10 @@ export default Vue.extend({
       } catch (error) {
         this.setConversationActionStatus(this.currentCopy.actionError, "error");
       }
+    },
+    async sendStarterQuestion(question) {
+      this.draft = question;
+      await this.sendMessage();
     },
     async sendMessage() {
       const question = this.draft.trim();

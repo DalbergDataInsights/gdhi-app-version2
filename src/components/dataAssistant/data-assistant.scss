@@ -411,6 +411,30 @@
     text-decoration: underline;
   }
 
+  &__starters {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    margin-top: 10px;
+    padding-left: 20px;
+    list-style: decimal;
+  }
+
+  &__starter {
+    background: none;
+    border: none;
+    padding: 0;
+    text-align: left;
+    font-size: 13px;
+    font-family: "InterRegular", sans-serif;
+    color: var(--gdhm-accent-deep);
+    cursor: pointer;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+
   &__markdown strong,
   &__markdown b {
     font-family: "InterExtraBold", "InterBold", "InterRegular", sans-serif;

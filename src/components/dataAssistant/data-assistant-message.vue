@@ -49,6 +49,23 @@
           ></span>
         </div>
 
+        <ol
+          v-if="message.type === 'welcome' && showStarters && currentCopy.starterQuestions"
+          class="gdhm-assistant__starters"
+        >
+          <li
+            v-for="question in currentCopy.starterQuestions"
+            :key="question"
+          >
+            <button
+              class="gdhm-assistant__starter"
+              @click="$emit('select-question', question)"
+            >
+              {{ question }}
+            </button>
+          </li>
+        </ol>
+
         <div v-if="message.errorText" class="gdhm-assistant__error">
           {{ message.errorText }}
         </div>
@@ -132,6 +149,10 @@ export default {
     message: {
       type: Object,
       required: true,
+    },
+    showStarters: {
+      type: Boolean,
+      default: false,
     },
   },
   computed: {
