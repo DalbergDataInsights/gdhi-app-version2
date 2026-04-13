@@ -14,6 +14,7 @@ export const COPY = {
     disclaimer: "AI can make mistakes.",
     welcome:
       "Hello! I can answer questions about digital health maturity across 100+ countries, including trends, regional comparisons, and indicator breakdowns. What would you like to explore?",
+    starterQuestionsLabel: "Explore what you can ask",
     starterQuestions: [
       "Which GDHM domain was strongest overall in 2024?",
       "How did Kenya's overall digital health phase change from 2023 to 2024?",

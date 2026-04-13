@@ -37,9 +37,7 @@
             :message="message"
             :current-copy="currentCopy"
             :copied-message-id="copiedMessageId"
-            :show-starters="message.type === 'welcome'"
             @copy="copyMessage"
-            @select-question="sendStarterQuestion"
           />
         </div>
 
@@ -57,6 +55,21 @@
               @click="retryLastMessage"
             >
               {{ currentCopy.retry }}
+            </button>
+          </div>
+
+          <div
+            v-if="messages.length === 1 && currentCopy.starterQuestions"
+            class="gdhm-assistant__starters"
+          >
+            <div class="gdhm-assistant__starters-label">{{ currentCopy.starterQuestionsLabel }}</div>
+            <button
+              v-for="question in currentCopy.starterQuestions"
+              :key="question"
+              class="gdhm-assistant__starter"
+              @click="sendStarterQuestion(question)"
+            >
+              {{ question }}
             </button>
           </div>
 
@@ -413,7 +426,6 @@ export default Vue.extend({
       assistantMessage.errorText = "";
       assistantMessage.isThinking = true;
       assistantMessage.thinkingText = this.currentCopy.thinking;
-      assistantMessage.isStreaming = false;
 
       if (!existingMessage) {
         this.messages.push(assistantMessage);
