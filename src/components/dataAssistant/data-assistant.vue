@@ -426,6 +426,7 @@ export default Vue.extend({
       assistantMessage.errorText = "";
       assistantMessage.isThinking = true;
       assistantMessage.thinkingText = this.currentCopy.thinking;
+      assistantMessage.isStreaming = false;
 
       if (!existingMessage) {
         this.messages.push(assistantMessage);
