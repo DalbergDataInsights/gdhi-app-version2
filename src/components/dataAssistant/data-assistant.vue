@@ -58,6 +58,21 @@
             </button>
           </div>
 
+          <div
+            v-if="messages.length === 1 && currentCopy.starterQuestions"
+            class="gdhm-assistant__starters"
+          >
+            <div class="gdhm-assistant__starters-label">{{ currentCopy.starterQuestionsLabel }}</div>
+            <button
+              v-for="question in currentCopy.starterQuestions"
+              :key="question"
+              class="gdhm-assistant__starter"
+              @click="sendStarterQuestion(question)"
+            >
+              {{ question }}
+            </button>
+          </div>
+
           <div class="gdhm-assistant__composer">
             <textarea
               ref="input"
@@ -367,6 +382,10 @@ export default Vue.extend({
       } catch (error) {
         this.setConversationActionStatus(this.currentCopy.actionError, "error");
       }
+    },
+    async sendStarterQuestion(question) {
+      this.draft = question;
+      await this.sendMessage();
     },
     async sendMessage() {
       const question = this.draft.trim();
